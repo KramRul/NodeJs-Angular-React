@@ -10,5 +10,6 @@ shopClientRouter.get("/getProductsByCategory", shopClientController.getProductsB
 shopClientRouter.get("/getProductsInCard", shopClientController.getProductsInCard);
 shopClientRouter.post("/addProductToCard", shopClientController.addProductToCard);
 shopClientRouter.post("/deleteProductFromCard", shopClientController.deleteProductFromCard);
+shopClientRouter.get("/getAllCategories", shopClientController.getAllCategories);
 
 module.exports = shopClientRouter;

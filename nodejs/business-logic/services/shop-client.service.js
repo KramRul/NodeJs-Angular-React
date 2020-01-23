@@ -40,7 +40,7 @@ class ShopClientService {
 
     getAllProducts() {
         return new Promise(function (resolve, reject) {
-            Product.find({}).select("_id name price quantity description categories").exec().then(products => {
+            Product.find({}).select("_id name price quantity description categories").populate('categories').exec().then(products => {
                 if (products.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "No product was added"
@@ -56,7 +56,7 @@ class ShopClientService {
 
     getAllCategories() {
         return new Promise(function (resolve, reject) {
-            Category.find({}).select("_id name description subcategories").exec().then(categories => {
+            Category.find({}).select("_id name description subcategories").populate('subcategories').exec().then(categories => {
                 if (categories.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "Categories not found"

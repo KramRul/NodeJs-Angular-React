@@ -28,3 +28,14 @@
     </div>
   </div>
 </div>
+<ul>
+  <ng-template #recursiveList let-list>
+    <li *ngFor="let item of responseModel">
+      {{item.name}}
+      <ul *ngIf="item.subcategories.length > 0">
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.subcategories }"></ng-container>
+      </ul>
+    </li>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: responseModel }"></ng-container>
+</ul>
