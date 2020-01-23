@@ -15,13 +15,13 @@ class AccountService {
         return new Promise(function (resolve, reject) {
             User.find({
                 name: userModel.name
-            }).exec().then(user => {
-                if (user.length < 1) {
+            }).exec().then(users => {
+                if (users.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "Auth failed"
                     }, 401));
                 }
-                bcrypt.compare(userModel.password, user[0].password, (err, result) => {
+                bcrypt.compare(userModel.password, users[0].password, (err, result) => {
                     if (err) {
                         reject(new GenericResponseView(null, {
                             message: "Auth failed"
@@ -29,8 +29,8 @@ class AccountService {
                     }
                     if (result) {
                         const token = jwt.sign({
-                                name: user[0].name,
-                                userId: user[0]._id
+                                name: users[0].name,
+                                userId: users[0]._id
                             },
                             commonVariables.JWT_KEY, {
                                 expiresIn: "1h"
@@ -38,7 +38,8 @@ class AccountService {
                         );
                         resolve(new GenericResponseView({
                             message: "Auth successful",
-                            token: token
+                            token: token,
+                            user: users[0]
                         }, null, 200));
                     }
                     reject(new GenericResponseView(null, {

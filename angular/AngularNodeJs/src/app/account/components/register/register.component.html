@@ -1,3 +1,33 @@
-<p>
-  register works!
-</p>
+<div class="card">
+  <div class="card-body">
+    <div class="form" [formGroup]="registerForm">
+      <div class="form-group mb-2">
+        <label for="inputUserName">Name</label>
+        <input type="text" class="form-control" id="inputUserName" placeholder="User Name" formControlName="name"
+          [(ngModel)]="modelRequest.name" [ngClass]="checkIfDisplayInputError('name')?'is-invalid':''">
+        <div class="invalid-form-errors" *ngIf="checkIfDisplayInputError('name')">
+          <em *ngIf="registerForm.get('name').hasError('required')">Name cannot be empty</em>
+        </div>
+      </div>
+      <div class="form-group mb-2">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" formControlName="password"
+          [(ngModel)]="modelRequest.password" [ngClass]="checkIfDisplayInputError('password')?'is-invalid':''">
+        <div class="invalid-form-errors" *ngIf="checkIfDisplayInputError('password')">
+          <em *ngIf="registerForm.get('password').hasError('required')">Password cannot be empty</em>
+        </div>
+      </div>
+      <div class="form-group mb-2">
+        <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Address" formControlName="address"
+          [(ngModel)]="modelRequest.address" [ngClass]="checkIfDisplayInputError('address')?'is-invalid':''">
+      </div>
+      <div class="form-group mb-2">
+        <label for="inputTelephone">Phone Number</label>
+        <input type="text" class="form-control" id="inputTelephone" placeholder="Phone Number" formControlName="telephone"
+          [(ngModel)]="modelRequest.telephone" [ngClass]="checkIfDisplayInputError('telephone')?'is-invalid':''">
+      </div>
+      <input type="button" class="btn btn-primary mb-2" value="Register" (click)="register()" />
+    </div>
+  </div>
+</div>

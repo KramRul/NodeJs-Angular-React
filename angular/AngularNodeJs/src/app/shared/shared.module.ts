@@ -11,6 +11,12 @@ import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { HttpTokenInterceptor } from './interceptors/http-token.interceptor';
 import { LocalStorageService } from './services/local-storage.service';
 import { LocalStorageKeyTypeDto } from './dtos/enums/local-storage-key-type-dto';
+import { AccountService } from './services/account.service';
+import { NotificationService } from './services/notification.service';
+import { ShopAdminService } from './services/shop-admin.service';
+import { ShopClientService } from './services/shop-client.service';
+import { FormService } from './services/form.service';
+import { UserHelper } from './helpers/user.helper';
 
 @NgModule({
   declarations: [
@@ -35,7 +41,13 @@ import { LocalStorageKeyTypeDto } from './dtos/enums/local-storage-key-type-dto'
     multi: true
   },
     LocalStorageService,
-    LocalStorageKeyTypeDto
+    LocalStorageKeyTypeDto,
+    AccountService,
+    NotificationService,
+    ShopAdminService,
+    ShopClientService,
+    FormService,
+    UserHelper
   ],
   exports: [
     CommonModule,

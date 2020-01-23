@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenHelper } from 'src/app/shared/helpers/token.helper';
+import { UserHelper } from 'src/app/shared/helpers/user.helper';
+import { UserDto } from 'src/app/shared/dtos/users/user-dto';
 
 @Component({
   selector: 'app-header-component',
@@ -6,10 +9,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-component.component.scss']
 })
 export class HeaderComponentComponent implements OnInit {
+  public isUserLoggedIn: boolean = false;
+  public user: UserDto = new UserDto();
 
-  constructor() { }
+  constructor(private tokenHelper: TokenHelper,
+    private userHelper: UserHelper) { }
 
   ngOnInit() {
+    this.loadCurrentUser();
   }
 
+  private loadCurrentUser(): void {
+    this.tokenHelper.getTokenEmitter().subscribe(token => {
+      if (token) {
+        this.isUserLoggedIn = true;
+      }
+    });
+    if (this.tokenHelper.isExist()) {
+      this.isUserLoggedIn = true;
+    }
+    this.user = this.userHelper.getCurrentUser();
+  }
+
+  public logout(){
+    this.tokenHelper.removeToken();
+    this.userHelper.clearCurrentUser();
+    this.isUserLoggedIn = false;
+  }
 }

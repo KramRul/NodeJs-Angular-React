@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ShopClientService } from 'src/app/shared/services/shop-client.service';
 
 @Component({
   selector: 'app-sidebar-component',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private shopClientService: ShopClientService) { }
 
   ngOnInit() {
+    this.loadData();
   }
 
+  loadData(){
+    this.shopClientService.getAllCategories().toPromise();
+  }
 }

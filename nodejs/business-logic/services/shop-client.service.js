@@ -40,13 +40,29 @@ class ShopClientService {
 
     getAllProducts() {
         return new Promise(function (resolve, reject) {
-            Product.select("_id name price quantity description categories").exec().then(products => {
+            Product.find({}).select("_id name price quantity description categories").exec().then(products => {
                 if (products.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "No product was added"
                     }, 401));
                 }
                 resolve(new GenericResponseView(products, null, 201));
+            }).catch(err => {
+                console.log(err);
+                reject(new GenericResponseView(null, err, 500));
+            });
+        });
+    }
+
+    getAllCategories() {
+        return new Promise(function (resolve, reject) {
+            Category.find({}).select("_id name description subcategories").exec().then(categories => {
+                if (categories.length < 1) {
+                    reject(new GenericResponseView(null, {
+                        message: "Categories not found"
+                    }, 401));
+                }
+                resolve(new GenericResponseView(categories, null, 201));
             }).catch(err => {
                 console.log(err);
                 reject(new GenericResponseView(null, err, 500));

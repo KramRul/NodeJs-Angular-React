@@ -2,15 +2,18 @@
   <a class="navbar-brand" href="#">Store</a>
   <div class="mr-auto mt-2 mt-lg-0">
   </div>
+  <div style="color: rgba(255,255,255,.5);">
+    <div *ngIf="isUserLoggedIn">Hello {{user.name}}</div>
+  </div>
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" routerLink="account/login">Login</a>
+      <a class="nav-link" routerLink="account/login" *ngIf="!isUserLoggedIn">Login</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="account/logout">Logout</a>
+      <a class="nav-link" *ngIf="isUserLoggedIn" (click)="logout()">Logout</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="account/register">Register</a>
+      <a class="nav-link" routerLink="account/register" *ngIf="!isUserLoggedIn">Register</a>
     </li>
   </ul>
   <form class="form-inline my-2 my-lg-0">

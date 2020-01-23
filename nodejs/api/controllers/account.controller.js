@@ -6,7 +6,8 @@ exports.login = function (request, response) {
         if (result && result.model) {
             response.status(result.status).json({
                 message: "You are logged in",
-                token: result.model.token
+                token: result.model.token,
+                user: result.model.user
             });
         }
     }).catch(error => {

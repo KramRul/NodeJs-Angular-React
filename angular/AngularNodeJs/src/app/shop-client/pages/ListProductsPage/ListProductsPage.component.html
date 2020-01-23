@@ -1,7 +1,17 @@
 <div class="card">
   <div class="card-body">
-    <p>
-      ListProductsPage works!
-    </p>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-md-3 pb-2" *ngFor="let item of responseModel">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+              <p class="card-text">{{item.description}}</p>
+              <p>Quantity: {{item.quantity}} Price: {{item.price}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
