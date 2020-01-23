@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-3 col-xs-1 p-l-0 p-r-0 collapse in" id="sidebar">
+          <div class="list-group panel">
+              <a href="#menu1" class="list-group-item collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false"><span class="hidden-sm-down">Item 1</span> </a>
+              <div class="collapse" id="menu1">
+                  <a href="#menu1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 1 </a>
+                  <div class="collapse" id="menu1sub1">
+                      <a href="#" class="list-group-item" data-parent="#menu1sub1">Subitem 1 a</a>
+                      <a href="#" class="list-group-item" data-parent="#menu1sub1">Subitem 2 b</a>
+                      <a href="#menu1sub1sub1" class="list-group-item" data-toggle="collapse" aria-expanded="false">Subitem 3 c </a>
+                      <div class="collapse" id="menu1sub1sub1">
+                          <a href="#" class="list-group-item" data-parent="#menu1sub1sub1">Subitem 3 c.1</a>
+                          <a href="#" class="list-group-item" data-parent="#menu1sub1sub1">Subitem 3 c.2</a>
+                      </div>
+                  </div>
+                  <a href="#" class="list-group-item" data-parent="#menu1">Subitem 2</a>
+                  <a href="#" class="list-group-item" data-parent="#menu1">Subitem 3</a>
+              </div>
+              <a href="#" class="list-group-item collapsed" data-parent="#sidebar"><span class="hidden-sm-down">Item 2</span></a>
+          </div>
+      </div>
+      <div class="col-md-9 col-xs-11 p-l-2 p-t-2">
+          <a href="#sidebar" data-toggle="collapse"><i class="fa fa-navicon fa-lg"></i></a>
+      </div>
+  </div>
+</div>
