@@ -24,7 +24,7 @@ class ShopClientService {
                         }
                     }
                 ]
-            }).select("_id name price quantity description categories").exec().then(products => {
+            }).select("_id name price quantity description categories").populate('categories').exec().then(products => {
                 if (products.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "Products not found"
@@ -74,7 +74,7 @@ class ShopClientService {
         return new Promise(function (resolve, reject) {
             Product.find({
                 "categories._id": mongoose.Types.ObjectId(getProductsByCategoryModel.categoryId)
-            }).select("_id name price quantity description categories").exec().then(products => {
+            }).select("_id name price quantity description categories").populate('categories').exec().then(products => {
                 if (products.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "Products not found"
@@ -90,7 +90,7 @@ class ShopClientService {
 
     getDetailsOfProduct(getDetailsOfProductModel) {
         return new Promise(function (resolve, reject) {
-            Product.findById(getDetailsOfProductModel.productId).select("_id name price quantity description categories").exec().then(products => {
+            Product.findById(getDetailsOfProductModel.productId).select("_id name price quantity description categories").populate('categories').exec().then(products => {
                 if (products.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "Products not found"
@@ -140,14 +140,22 @@ class ShopClientService {
                             }, 401));
                         }
                         if (!card) {
+                            let shopCardProduct = new ShopCardProduct({
+                                _id: new mongoose.Types.ObjectId(),
+                                product: product,
+                                quantity: 1
+                            });
+                            shopCardProduct.save().then(result => {
+                                console.log(result);
+                                resolve(new GenericResponseView(result, null, 201));
+                            }).catch(err => {
+                                console.log(err);
+                                reject(new GenericResponseView(null, err, 500));
+                            });
                             const shopCard = new ShopCard({
                                 _id: new mongoose.Types.ObjectId(),
                                 user: user,
-                                products: [new ShopCardProduct({
-                                    _id: new mongoose.Types.ObjectId(),
-                                    product: product,
-                                    quantity: 1
-                                })]
+                                products: [shopCardProduct]
                             });
                             shopCard.save().then(result => {
                                 console.log(result);
@@ -157,11 +165,19 @@ class ShopClientService {
                                 reject(new GenericResponseView(null, err, 500));
                             });
                         } else {
-                            card.products.push(new ShopCardProduct({
+                            let shopCardProduct = new ShopCardProduct({
                                 _id: new mongoose.Types.ObjectId(),
                                 product: product,
                                 quantity: 1
-                            }))
+                            });
+                            shopCardProduct.save().then(result => {
+                                console.log(result);
+                                resolve(new GenericResponseView(result, null, 201));
+                            }).catch(err => {
+                                console.log(err);
+                                reject(new GenericResponseView(null, err, 500));
+                            });
+                            card.products.push(shopCardProduct);
                             ShopCard.findByIdAndUpdate(card._id, {
                                 products: card.products
                             }).then(result => {

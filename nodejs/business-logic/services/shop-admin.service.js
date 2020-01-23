@@ -94,7 +94,7 @@ class ShopAdminService {
 
     getProduct(getProductModel) {
         return new Promise(function (resolve, reject) {
-            Product.findById(getProductModel.id).select("_id name price quantity description categories").exec().then(product => {
+            Product.findById(getProductModel.id).select("_id name price quantity description categories").populate('categories').exec().then(product => {
                     if (product.length < 1) {
                         reject(new GenericResponseView(null, {
                             message: "Product not found"
@@ -113,14 +113,14 @@ class ShopAdminService {
         return new Promise(function (resolve, reject) {
             Category.find({
                 name: addCategoryModel.name
-            }).exec().then(categories => {
+            }).exec().then(async categories => {
                 if (categories.length >= 1) {
                     reject(new GenericResponseView(null, {
                         message: "Category with same name already exists"
                     }, 401));
                 }
                 let subcategories = [];
-                if(addCategoryModel.subcategories){
+                if (addCategoryModel.subcategories) {
                     subcategories = addCategoryModel.subcategories.map(sub => {
                         return new Category({
                             _id: new mongoose.Types.ObjectId(),
@@ -129,6 +129,7 @@ class ShopAdminService {
                         })
                     })
                 }
+                await Promise.all(subcategories.map(p => p.save()));
                 const category = new Category({
                     _id: new mongoose.Types.ObjectId(),
                     name: addCategoryModel.name,
