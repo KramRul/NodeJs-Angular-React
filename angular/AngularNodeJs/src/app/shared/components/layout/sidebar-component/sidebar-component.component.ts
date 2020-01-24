@@ -17,6 +17,5 @@ export class SidebarComponentComponent implements OnInit {
 
   async loadData(){
     this.responseModel = await this.shopClientService.getAllCategories().toPromise();
-    debugger
   }
 }
