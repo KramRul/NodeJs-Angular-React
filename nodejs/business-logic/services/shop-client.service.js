@@ -56,12 +56,13 @@ class ShopClientService {
 
     getAllCategories() {
         return new Promise(function (resolve, reject) {
-            Category.find({}).select("_id name description subcategories").populate('subcategories').exec().then(categories => {
+            Category.find({}).select("_id name description subcategories isSubCategory").populate('subcategories').exec().then(categories => {
                 if (categories.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "Categories not found"
                     }, 401));
                 }
+                categories = categories.filter(cat => cat.isSubCategory === false);
                 resolve(new GenericResponseView(categories, null, 201));
             }).catch(err => {
                 console.log(err);

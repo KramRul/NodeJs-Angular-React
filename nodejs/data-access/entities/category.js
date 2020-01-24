@@ -9,6 +9,9 @@ const category = new Schema({
     description: {
         type: String
     },
+    isSubCategory: {
+        type: Boolean
+    },
     subcategories: [{
         type: Schema.Types.ObjectId,
         ref: 'Category'

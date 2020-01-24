@@ -125,7 +125,8 @@ class ShopAdminService {
                         return new Category({
                             _id: new mongoose.Types.ObjectId(),
                             name: sub.name,
-                            description: sub.description
+                            description: sub.description,
+                            isSubCategory: true
                         })
                     })
                 }
@@ -134,7 +135,8 @@ class ShopAdminService {
                     _id: new mongoose.Types.ObjectId(),
                     name: addCategoryModel.name,
                     description: addCategoryModel.description,
-                    subcategories: subcategories
+                    subcategories: subcategories,
+                    isSubCategory: false
                 });
                 category.save().then(result => {
                     console.log(result);
