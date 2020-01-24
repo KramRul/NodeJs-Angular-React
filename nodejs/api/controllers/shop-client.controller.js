@@ -20,7 +20,7 @@ exports.findProducts = function (request, response) {
 }
 
 exports.getProductsByCategory = function (request, response) {
-    shopClientService.getProductsByCategory(request.body).then(result => {
+    shopClientService.getProductsByCategory(request.query).then(result => {
         if (result && result.model) {
             response.status(result.status).json(result.model);
         }

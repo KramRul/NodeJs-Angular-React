@@ -7,7 +7,7 @@
       <div class="list-group panel">
         <ng-template #recursiveList let-responseModel>
           <div *ngFor="let item of responseModel">
-            <a href="#menu{{item._id}}" class="list-group-item collapsed" data-toggle="collapse" aria-expanded="false">
+            <a href="#menu{{item._id}}" class="list-group-item collapsed" data-toggle="collapse" aria-expanded="false" (click)="goToProductsByCategoryPage(item)">
               <span class="hidden-sm-down">{{item.name}}</span>
             </a>
             <div class="collapse" id="menu{{item._id}}">

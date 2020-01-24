@@ -17,7 +17,7 @@ class ShopAdminService {
                 if (products.length >= 1) {
                     reject(new GenericResponseView(null, {
                         message: "Product with same name already exists"
-                    }, 401));
+                    }, 500));
                 }
                 Category.find({
                     '_id': {
@@ -61,7 +61,7 @@ class ShopAdminService {
                 if (products.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "This product does not exist"
-                    }, 401));
+                    }, 500));
                 }
                 Category.find({
                     '_id': {
@@ -98,7 +98,7 @@ class ShopAdminService {
                     if (product.length < 1) {
                         reject(new GenericResponseView(null, {
                             message: "Product not found"
-                        }, 401));
+                        }, 500));
                     }
                     resolve(new GenericResponseView(product, null, 201));
                 })
@@ -117,7 +117,7 @@ class ShopAdminService {
                 if (categories.length >= 1) {
                     reject(new GenericResponseView(null, {
                         message: "Category with same name already exists"
-                    }, 401));
+                    }, 500));
                 }
                 let subcategories = [];
                 if (addCategoryModel.subcategories) {
