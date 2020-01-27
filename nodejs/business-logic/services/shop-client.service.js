@@ -74,7 +74,7 @@ class ShopClientService {
     getProductsByCategory(getProductsByCategoryModel) {
         return new Promise(function (resolve, reject) {
             Product.find({
-                "categories._id": mongoose.Types.ObjectId(getProductsByCategoryModel.categoryId)
+                categories: mongoose.Types.ObjectId(getProductsByCategoryModel.categoryId)
             }).select("_id name price quantity description categories").populate('categories').exec().then(products => {
                 if (products.length < 1) {
                     reject(new GenericResponseView(null, {
