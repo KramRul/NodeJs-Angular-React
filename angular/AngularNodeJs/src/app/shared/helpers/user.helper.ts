@@ -21,4 +21,9 @@ export class UserHelper {
     clearCurrentUser() {
         this.localStorageService.remove(this.localStorageKeyTypeDto.userKey);
     }
+
+    getCurrentUserRole() {
+        let user = this.getCurrentUser();
+        return user.role;
+    }
 }

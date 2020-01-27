@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
       model.name = result.user.name;
       model.address = result.user.address;
       model.telephone = result.user.telephone;
+      model.role = Number.parseInt(result.user.role);
       this.tokenHelper.setToken(result.token);
       this.userHelper.setCurrentUser(model);
       this.tokenHelper.tokenOutputEmit.emit(result.token);

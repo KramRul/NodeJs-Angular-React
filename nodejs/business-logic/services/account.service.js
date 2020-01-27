@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 const GenericResponseView = require("../../common/generic-response-view");
 const commonVariables = require("../../common/common-variables");
+const UserRole = require("../../data-access/enums/user-role");
 
 class AccountService {
     constructor() {
@@ -72,7 +73,8 @@ class AccountService {
                                 name: userModel.name,
                                 password: hash,
                                 address: userModel.address,
-                                telephone: userModel.telephone
+                                telephone: userModel.telephone,
+                                role: UserRole.Client
                             });
                             user.save().then(result => {
                                 console.log(result);

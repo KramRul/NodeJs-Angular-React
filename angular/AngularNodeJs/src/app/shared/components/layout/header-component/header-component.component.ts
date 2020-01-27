@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenHelper } from 'src/app/shared/helpers/token.helper';
 import { UserHelper } from 'src/app/shared/helpers/user.helper';
 import { UserDto } from 'src/app/shared/dtos/users/user-dto';
+import { UserRoleTypeDto } from 'src/app/shared/dtos/enums/user-role-type-dto';
 
 @Component({
   selector: 'app-header-component',
@@ -10,6 +11,7 @@ import { UserDto } from 'src/app/shared/dtos/users/user-dto';
 })
 export class HeaderComponentComponent implements OnInit {
   public isUserLoggedIn: boolean = false;
+  public isUserAdmin: boolean = false;
   public user: UserDto = new UserDto();
 
   constructor(private tokenHelper: TokenHelper,
@@ -29,6 +31,8 @@ export class HeaderComponentComponent implements OnInit {
       this.isUserLoggedIn = true;
     }
     this.user = this.userHelper.getCurrentUser();
+    debugger
+    this.isUserAdmin = this.user.role === UserRoleTypeDto.Admin;
   }
 
   public logout(){

@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body">
+    <div class="container">
+      <div class="form" [formGroup]="addProductForm">
+        <div class="form-group mb-2">
+          <label for="inputProductName">Name</label>
+          <input type="text" class="form-control" id="inputProductName" placeholder="Product Name"
+            formControlName="name" [(ngModel)]="modelRequest.name"
+            [ngClass]="checkIfDisplayInputError('name')?'is-invalid':''">
+          <div class="invalid-form-errors" *ngIf="checkIfDisplayInputError('name')">
+            <em *ngIf="addProductForm.get('name').hasError('required')">Name cannot be empty</em>
+          </div>
+        </div>
+        <div class="form-group mb-2">
+          <label for="inputDescription">Description</label>
+          <input type="text" class="form-control" id="inputDescription" placeholder="Description"
+            formControlName="description" [(ngModel)]="modelRequest.description"
+            [ngClass]="checkIfDisplayInputError('description')?'is-invalid':''">
+        </div>
+        <div class="form-group mb-2">
+          <label for="inputPrice">Price</label>
+          <input type="number" class="form-control" id="inputPrice" placeholder="Price" formControlName="price"
+            [(ngModel)]="modelRequest.price" [ngClass]="checkIfDisplayInputError('price')?'is-invalid':''">
+          <div class="invalid-form-errors" *ngIf="checkIfDisplayInputError('price')">
+            <em *ngIf="addProductForm.get('price').hasError('required')">Price cannot be empty</em>
+            <em *ngIf="addProductForm.get('price').hasError()">Price is invalid</em>
+          </div>
+        </div>
+        <div class="form-group mb-2">
+          <label for="inputQuantity">Quantity</label>
+          <input type="number" class="form-control" id="inputQuantity" placeholder="Quantity" formControlName="quantity"
+            [(ngModel)]="modelRequest.quantity" [ngClass]="checkIfDisplayInputError('quantity')?'is-invalid':''">
+          <div class="invalid-form-errors" *ngIf="checkIfDisplayInputError('quantity')">
+            <em *ngIf="addProductForm.get('quantity').hasError('required')">Quantity cannot be empty</em>
+            <em *ngIf="addProductForm.get('quantity').hasError()">Quantity is invalid</em>
+          </div>
+        </div>
+        <div class="form-group mb-2">
+          
+        </div>
+        <input type="button" class="btn btn-primary mb-2" value="Add Product" (click)="addProduct()" />
+      </div>
+    </div>
+  </div>
+</div>
