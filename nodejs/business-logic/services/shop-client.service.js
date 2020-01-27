@@ -28,7 +28,7 @@ class ShopClientService {
                 if (products.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "Products not found"
-                    }, 500));
+                    }, 400));
                 }
                 resolve(new GenericResponseView(products, null, 201));
             }).catch(err => {
@@ -44,7 +44,7 @@ class ShopClientService {
                 if (products.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "No product was added"
-                    }, 500));
+                    }, 400));
                 }
                 resolve(new GenericResponseView(products, null, 201));
             }).catch(err => {
@@ -60,7 +60,7 @@ class ShopClientService {
                 if (categories.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "Categories not found"
-                    }, 500));
+                    }, 400));
                 }
                 categories = categories.filter(cat => cat.isSubCategory === false);
                 resolve(new GenericResponseView(categories, null, 201));
@@ -79,7 +79,7 @@ class ShopClientService {
                 if (products.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "Products not found"
-                    }, 500));
+                    }, 400));
                 }
                 resolve(new GenericResponseView(products, null, 201));
             }).catch(err => {
@@ -95,7 +95,7 @@ class ShopClientService {
                 if (products.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "Products not found"
-                    }, 500));
+                    }, 400));
                 }
                 resolve(new GenericResponseView(products, null, 201));
             }).catch(err => {
@@ -113,7 +113,7 @@ class ShopClientService {
                 if (card && card.products.length < 1) {
                     reject(new GenericResponseView(null, {
                         message: "Products not found"
-                    }, 500));
+                    }, 400));
                 }
                 resolve(new GenericResponseView(card.products, null, 201));
             }).catch(err => {
@@ -129,7 +129,7 @@ class ShopClientService {
                 if (!user) {
                     reject(new GenericResponseView(null, {
                         message: "User not found"
-                    }, 500));
+                    }, 400));
                 }
                 ShopCard.findOne({
                     "user": mongoose.Types.ObjectId(addProductToCardModel.userId)
@@ -138,7 +138,7 @@ class ShopClientService {
                         if (!product) {
                             reject(new GenericResponseView(null, {
                                 message: "Products not found"
-                            }, 500));
+                            }, 400));
                         }
                         if (!card) {
                             let shopCardProduct = new ShopCardProduct({
@@ -213,7 +213,7 @@ class ShopClientService {
                 if (index === -1) {
                     reject(new GenericResponseView(null, {
                         message: "Product not found"
-                    }, 500));
+                    }, 400));
                 }
                 card.products.pull({
                     "_id": new mongoose.Types.ObjectId(deleteProductFromCardModel.cardProductId)
