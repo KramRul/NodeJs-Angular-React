@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { ProductDto } from 'src/app/shared/dtos/products/product-dto';
 import { ShopClientService } from 'src/app/shared/services/shop-client.service';
 
@@ -12,17 +12,21 @@ export class ListProductsByCategoryPageComponent implements OnInit {
   public categoryId: string;
   public categoryName: string;
   public responseModel: Array<ProductDto> = [];
-  
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private shopClientService: ShopClientService) { 
-    this.categoryId = this.route.snapshot.queryParamMap.get('categoryId');
-    this.categoryName = this.route.snapshot.queryParamMap.get('categoryName');
+    private shopClientService: ShopClientService) {
+    this.route.queryParamMap.subscribe((paramMap: ParamMap) => {
+      this.categoryId = paramMap.get('categoryId');
+      this.categoryName = paramMap.get('categoryName');
+      if (this.categoryId &&  this.categoryName) {
+        this.loadData();
+      }
+    });
   }
 
   ngOnInit() {
-    this.loadData();
   }
 
   async loadData() {
