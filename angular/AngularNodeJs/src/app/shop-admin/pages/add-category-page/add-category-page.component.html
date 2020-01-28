@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-body">
+    <div class="container">
+      <div class="form" [formGroup]="addCategoryForm">
+        <div class="form-group mb-2">
+          <label for="inputCategoryName">Name</label>
+          <input type="text" class="form-control" id="inputCategoryName" placeholder="Category Name"
+            formControlName="name" [(ngModel)]="modelRequest.name"
+            [ngClass]="checkIfDisplayInputError('name')?'is-invalid':''">
+          <div class="invalid-form-errors" *ngIf="checkIfDisplayInputError('name')">
+            <em *ngIf="addCategoryForm.get('name').hasError('required')">Name cannot be empty</em>
+          </div>
+        </div>
+        <div class="form-group mb-2">
+          <label for="inputDescription">Description</label>
+          <input type="text" class="form-control" id="inputDescription" placeholder="Description"
+            formControlName="description" [(ngModel)]="modelRequest.description"
+            [ngClass]="checkIfDisplayInputError('description')?'is-invalid':''">
+        </div>
+      </div>
+      <div class="form-group mb-2">
+        <label for="inputSubCategories">SubCategories</label>
+        <input type="button" class="btn btn-secondary mx-sm-3 mb-2" value="+" (click)="addSubCategory()">
+        <input type="button" class="btn btn-secondary mb-2" value="-" (click)="removeSubCategory()">
+        <div *ngFor="let item of modelRequest.subcategories" class="form-inline">
+          <div class="form-group mb-2">
+            <input type="text" class="form-control" placeholder="Subcategory Name" [(ngModel)]="item.name">
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" placeholder="Subcategory Description" [(ngModel)]="item.description">
+          </div>
+        </div>
+      </div>
+      <input type="button" class="btn btn-primary mb-2" value="Add Category" (click)="addCategory()" />
+    </div>
+  </div>
+</div>
