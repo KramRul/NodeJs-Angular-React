@@ -36,7 +36,15 @@
           </div>
         </div>
         <div class="form-group mb-2">
-          
+          <label for="inputCategories">Categories</label>
+          <ng-select id="inputCategories" [items]="categories" bindLabel="name" bindValue="_id"
+            [multiple]="true" [closeOnSelect]="true" [searchable]="false" [(ngModel)]="modelRequest.categories"
+            formControlName="categories">
+          </ng-select>
+          <div class="invalid-form-errors" *ngIf="checkIfDisplayInputError('categories')">
+            <em *ngIf="addProductForm.get('categories').hasError('required')">Categories cannot be empty</em>
+            <em *ngIf="addProductForm.get('categories').hasError()">Categories are invalid</em>
+          </div>
         </div>
         <input type="button" class="btn btn-primary mb-2" value="Add Product" (click)="addProduct()" />
       </div>

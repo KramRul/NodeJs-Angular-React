@@ -17,6 +17,7 @@ import { ShopAdminService } from './services/shop-admin.service';
 import { ShopClientService } from './services/shop-client.service';
 import { FormService } from './services/form.service';
 import { UserHelper } from './helpers/user.helper';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UserHelper } from './helpers/user.helper';
     SharedRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgSelectModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -57,7 +59,8 @@ import { UserHelper } from './helpers/user.helper';
     ReactiveFormsModule,
     SidebarComponentComponent,
     HeaderComponentComponent,
-    ToastrModule
+    ToastrModule,
+    NgSelectModule
   ]
 })
 export class SharedModule { }

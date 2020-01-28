@@ -31,8 +31,9 @@ export class HeaderComponentComponent implements OnInit {
       this.isUserLoggedIn = true;
     }
     this.user = this.userHelper.getCurrentUser();
-    debugger
-    this.isUserAdmin = this.user.role === UserRoleTypeDto.Admin;
+    if(this.user){
+      this.isUserAdmin = this.user.role === UserRoleTypeDto.Admin;
+    }
   }
 
   public logout(){
