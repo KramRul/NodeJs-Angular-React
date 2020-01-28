@@ -1,0 +1,14 @@
+table {
+    border-spacing: 0px;
+    border: none;
+}
+
+table tr td:nth-child(2) {
+    width: 100%;
+}
+
+.menu-sidebar {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #fff;
+}
