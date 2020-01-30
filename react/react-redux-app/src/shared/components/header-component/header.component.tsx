@@ -17,9 +17,9 @@ class HeaderComponent extends Component {
         aria-haspopup="true" aria-expanded="false">
         Admin
       </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-        <a class="dropdown-item" routerLink="shop-admin/add-product-page">Add Product</a>
-        <a class="dropdown-item" routerLink="shop-admin/add-category-page">Add Category</a>
+      <div className="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+        <a className="dropdown-item" routerLink="shop-admin/add-product-page">Add Product</a>
+        <a className="dropdown-item" routerLink="shop-admin/add-category-page">Add Category</a>
       </div>
     </li>;
     }
@@ -29,8 +29,8 @@ class HeaderComponent extends Component {
   renderLoginLink = () => {
     const props = this.props;
     if(!props.isUserLoggedIn){
-      return <li class="nav-item">
-      <a class="nav-link" routerLink="account/login">Login</a>
+      return <li className="nav-item">
+      <a className="nav-link" routerLink="account/login">Login</a>
       </li>;
     }
     return;
@@ -39,8 +39,8 @@ class HeaderComponent extends Component {
   renderLogoutLink = () => {
     const props = this.props;
     if(!props.isUserLoggedIn){
-      return <li class="nav-item">
-      <a class="nav-link" onclick="logout()">Logout</a>
+      return <li className="nav-item">
+      <a className="nav-link" onclick="logout()">Logout</a>
       </li>;
     }
     return;
@@ -49,8 +49,8 @@ class HeaderComponent extends Component {
   renderRegisterLink = () => {
     const props = this.props;
     if(!props.isUserLoggedIn){
-      return <li class="nav-item">
-      <a class="nav-link" routerLink="account/register">Register</a>
+      return <li className="nav-item">
+      <a className="nav-link" routerLink="account/register">Register</a>
     </li>;
     }
     return;
@@ -66,15 +66,15 @@ class HeaderComponent extends Component {
         <div style={{color: 'rgba(255,255,255,.5)'}}>
           {this.renderUserName()}
         </div>
-        <ul class="navbar-nav">
+        <ul className="navbar-nav">
           {this.renderAdminLinks()}
           {this.renderLoginLink()}
           {this.renderLogoutLink()}
           {this.renderRegisterLink()}
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <form className="form-inline my-2 my-lg-0">
+          <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
       </nav>
     </div>
