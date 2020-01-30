@@ -1,26 +1,30 @@
-import {
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-} from '../actions/user.actions'
+import * as SidebarActions from '../actions/sidebar.actions'
 
 const initialState = {
-  name: '',
-  error: '',
+  responseModel: {}, 
   isFetching: false,
+  error: '',
 }
 
-export function userReducer(state = initialState, action) {
+export function sidebarReducer(state = initialState, action) {
   switch (action.type) {
-    case LOGIN_REQUEST:
+    case SidebarActions.LOAD_DATA_REQUEST:
       return { ...state, isFetching: true, error: '' }
 
-    case LOGIN_SUCCESS:
-      return { ...state, isFetching: false, name: action.payload }
+    case SidebarActions.LOAD_DATA_SUCCESS:
+      return { ...state, responseModel: action.payload, isFetching: false, error: '' }
 
-    case LOGIN_FAIL:
-      return { ...state, isFetching: false, error: action.payload.message }
+    case SidebarActions.LOAD_DATA_FAIL:
+      return { ...state, error: action.payload.message, isFetching: false }
 
+    case SidebarActions.GO_TO_PRODUCTS_BY_CATEGORY_PAGE_REQUEST:
+      return { ...state, isFetching: true, error: '' }
+
+    case SidebarActions.GO_TO_PRODUCTS_BY_CATEGORY_PAGE_SUCCESS:
+      return { ...state, isFetching: false, error: '' }
+
+    case SidebarActions.GO_TO_PRODUCTS_BY_CATEGORY_PAGE_FAIL:
+      return { ...state, error: action.payload.message, isFetching: false }
     default:
       return state
   }

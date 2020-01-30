@@ -1,28 +1,32 @@
-import {
-  GET_PHOTOS_REQUEST,
-  GET_PHOTOS_SUCCESS,
-  GET_PHOTOS_FAIL,
-} from '../actions/page.actions'
-import { getCurrentYear } from '../util/date'
+import * as HeaderActions from '../actions/header.actions'
 
 const initialState = {
-  year: getCurrentYear(),
-  photos: [],
+  user: {}, 
+  isUserLoggedIn: false, 
+  isUserAdmin: false,
   isFetching: false,
   error: '',
 }
 
-export function pageReducer(state = initialState, action) {
+export function headerReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_PHOTOS_REQUEST:
-      return { ...state, year: action.payload, isFetching: true, error: '' }
+    case HeaderActions.LOAD_CURRENT_USER_REQUEST:
+      return { ...state, isFetching: true, error: '' }
 
-    case GET_PHOTOS_SUCCESS:
-      return { ...state, photos: action.payload, isFetching: false, error: '' }
+    case HeaderActions.LOAD_CURRENT_USER_SUCCESS:
+      return { ...state, user: action.payload.user, isUserLoggedIn: action.payload.isUserLoggedIn, isUserAdmin: action.payload.isUserAdmin, isFetching: false, error: '' }
 
-    case GET_PHOTOS_FAIL:
+    case HeaderActions.LOAD_CURRENT_USER_FAIL:
       return { ...state, error: action.payload.message, isFetching: false }
 
+    case HeaderActions.LOGOUT_REQUEST:
+      return { ...state, isFetching: true, error: '' }
+
+    case HeaderActions.LOGOUT_SUCCESS:
+      return { ...state, user: action.payload.user, isUserLoggedIn: action.payload.isUserLoggedIn, isUserAdmin: action.payload.isUserAdmin, isFetching: false, error: '' }
+
+    case HeaderActions.LOGOUT_FAIL:
+      return { ...state, error: action.payload.message, isFetching: false }
     default:
       return state
   }

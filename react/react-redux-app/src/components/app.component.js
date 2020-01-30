@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import HeaderContainer from '../containers/header.container'
 import SidebarContainer from '../containers/sidebar.container'
-import { Route } from './components/Router'
+import { Route } from './router.component'
+import './app.component.css'
 
 class App extends Component {
   render() {
