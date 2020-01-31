@@ -1,4 +1,4 @@
 export class AddProductToCardShopClientRequestView {
-    public userId: string;
-	public productId: string;
+    public userId: string = '';
+	public productId: string = '';
 }

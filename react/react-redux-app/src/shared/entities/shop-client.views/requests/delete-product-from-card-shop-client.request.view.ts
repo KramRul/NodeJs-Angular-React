@@ -1,4 +1,4 @@
 export class DeleteProductFromCardShopClientRequestView {
-    public userId: string;
-	public cardProductId: string;
+    public userId: string = '';
+	public cardProductId: string = '';
 }

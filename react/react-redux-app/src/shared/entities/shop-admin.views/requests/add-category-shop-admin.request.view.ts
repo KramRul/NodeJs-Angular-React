@@ -1,7 +1,7 @@
-import { CategoryDto } from 'src/app/shared/dtos/categories/category-dto';
+import { CategoryDto } from "../../../dtos/categories/category-dto";
 
 export class AddCategoryShopAdminRequestView {
-    public name: string;
-    public description: string;
+    public name: string = '';
+    public description: string = '';
     public subcategories: Array<CategoryDto> = [];
 }
