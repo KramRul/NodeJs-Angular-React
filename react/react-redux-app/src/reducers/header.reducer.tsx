@@ -8,7 +8,7 @@ const initialState = {
   error: '',
 }
 
-export function headerReducer(state = initialState, action: any) {
+export function headerReducer(state = initialState, action: HeaderActions.HeaderActionType) {
   switch (action.type) {
     case HeaderActions.LOAD_CURRENT_USER_REQUEST:
       return { ...state, isFetching: true, error: '' }

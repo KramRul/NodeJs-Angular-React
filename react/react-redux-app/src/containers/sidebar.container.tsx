@@ -2,10 +2,17 @@ import React from 'react'
 import { connect } from 'react-redux'
 import SidebarComponent from '../shared/components/sidebar-component/sidebar.component'
 import * as SidebarActions from '../actions/sidebar.actions'
+import { CategoryDto } from '../shared/dtos/categories/category-dto'
 
-class SidebarContainer extends React.Component {
+export type SidebarState = {
+  responseModel: Array<CategoryDto>
+}
+
+class SidebarContainer extends React.Component<{}, SidebarState> {
   render() {
-    return <SidebarComponent />
+    return <SidebarComponent
+      responseModel={this.state.responseModel}
+      goToProductsByCategoryPage={SidebarActions.goToProductsByCategoryPage} />
   }
 }
 

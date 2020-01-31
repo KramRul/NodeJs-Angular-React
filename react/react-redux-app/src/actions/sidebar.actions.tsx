@@ -6,6 +6,16 @@ export const GO_TO_PRODUCTS_BY_CATEGORY_PAGE_REQUEST = 'GO_TO_PRODUCTS_BY_CATEGO
 export const GO_TO_PRODUCTS_BY_CATEGORY_PAGE_SUCCESS = 'GO_TO_PRODUCTS_BY_CATEGORY_PAGE_SUCCESS'
 export const GO_TO_PRODUCTS_BY_CATEGORY_PAGE_FAIL = 'GO_TO_PRODUCTS_BY_CATEGORY_PAGE_FAIL'
 
+export type SidebarActionType = {
+    type: 'LOAD_DATA_REQUEST'
+    | 'LOAD_DATA_SUCCESS'
+    | 'LOAD_DATA_FAIL'
+    | 'GO_TO_PRODUCTS_BY_CATEGORY_PAGE_REQUEST'
+    | 'GO_TO_PRODUCTS_BY_CATEGORY_PAGE_SUCCESS'
+    | 'GO_TO_PRODUCTS_BY_CATEGORY_PAGE_FAIL',
+    payload: any
+}
+
 let responseModel = {};
 
 export function loadData() {
@@ -21,7 +31,7 @@ export function loadData() {
                 type: LOAD_DATA_SUCCESS,
                 payload: responseModel,
             })
-    
+
         } catch (e) {
             dispatch({
                 type: LOAD_DATA_FAIL,
@@ -45,7 +55,7 @@ export function goToProductsByCategoryPage() {
                 type: GO_TO_PRODUCTS_BY_CATEGORY_PAGE_SUCCESS,
                 payload: null,
             })
-    
+
         } catch (e) {
             dispatch({
                 type: GO_TO_PRODUCTS_BY_CATEGORY_PAGE_FAIL,

@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
 import './sidebar.component.css'
+import { SidebarState } from '../../../containers/sidebar.container';
+import { CategoryDto } from '../../dtos/categories/category-dto';
 
-class SidebarComponent extends Component {
+export type SidebarProps = {
+  responseModel: Array<CategoryDto>,
+  goToProductsByCategoryPage: (category: CategoryDto) => void
+}
+
+class SidebarComponent extends Component<SidebarProps, SidebarState> {
+  goToProductsByCategoryPage(category: CategoryDto){
+    this.props.goToProductsByCategoryPage(category);
+  }
+
   render() {
     return <div className="container-fluid">
     <div className="row">
@@ -27,7 +38,7 @@ class SidebarComponent extends Component {
   }
 
   renderMenuItem(item: any){
-    return <div> <a href="#menu{{item._id}}" className="list-group-item collapsed" data-toggle="collapse" aria-expanded="false" onClick={this.goToProductsByCategoryPage(item)}>
+    return <div> <a href="#menu{{item._id}}" className="list-group-item collapsed" data-toggle="collapse" aria-expanded="false" onClick={() => this.goToProductsByCategoryPage(item)}>
     <span className="hidden-sm-down">{item.name}</span>
     </a>
     <div className="collapse" id="menu{{item._id}}">

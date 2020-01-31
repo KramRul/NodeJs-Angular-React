@@ -1,6 +1,19 @@
 import React, { Component } from 'react'
+import { HeaderState } from '../../../containers/header.container';
+import { UserDto } from '../../dtos/users/user-dto';
 
-class HeaderComponent extends Component {
+export type HeaderProps = {
+  isUserLoggedIn: boolean,
+  isUserAdmin: boolean,
+  user: UserDto,
+  logout: () => void
+}
+
+export default class HeaderComponent extends Component<HeaderProps, HeaderState> {
+  logout() {
+    this.props.logout();
+  }
+
   renderUserName = () => {
     const props = this.props
     if(props.isUserLoggedIn){
@@ -80,5 +93,3 @@ class HeaderComponent extends Component {
     </div>
   }
 }
-
-export default HeaderComponent

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import HeaderContainer from '../containers/header.container'
 import SidebarContainer from '../containers/sidebar.container'
-import { Route } from './router.component'
+import { Router, Route, Redirect } from "react-router";
+import { Link, BrowserRouter } from 'react-router-dom';
 import './app.component.css'
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <div>
@@ -30,5 +31,3 @@ class App extends Component {
     )
   }
 }
-
-export default App

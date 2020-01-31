@@ -2,14 +2,30 @@ import React from 'react'
 import { connect } from 'react-redux'
 import HeaderComponent from '../shared/components/header-component/header.component'
 import * as HeaderActions from '../actions/header.actions'
+import { UserDto } from '../shared/dtos/users/user-dto'
 
-class HeaderContainer extends React.Component {
+export type HeaderState = {
+  isUserLoggedIn: boolean,
+  isUserAdmin: boolean,
+  user: UserDto
+}
+
+export type HeaderContainerProps = {
+  loadCurrentUser: () => void,
+  logout: () => void
+}
+
+class HeaderContainer extends React.Component<HeaderContainerProps, HeaderState> {
   componentDidMount() {
-    this.props.dispatch(HeaderActions.loadCurrentUser());
+    this.props.loadCurrentUser();
   }
 
   render() {
-    return <HeaderComponent />
+    return <HeaderComponent
+      isUserLoggedIn={this.state.isUserLoggedIn}
+      isUserAdmin={this.state.isUserAdmin}
+      user={this.state.user}
+      logout={HeaderActions.logout} />
   }
 }
 

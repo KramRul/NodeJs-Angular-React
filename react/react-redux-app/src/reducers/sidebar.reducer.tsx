@@ -6,7 +6,7 @@ const initialState = {
   error: '',
 }
 
-export function sidebarReducer(state = initialState, action: any) {
+export function sidebarReducer(state = initialState, action: SidebarActions.SidebarActionType) {
   switch (action.type) {
     case SidebarActions.LOAD_DATA_REQUEST:
       return { ...state, isFetching: true, error: '' }

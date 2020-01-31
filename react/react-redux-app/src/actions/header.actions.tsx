@@ -6,16 +6,26 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 export const LOGOUT_FAIL = 'LOGOUT_FAIL'
 
+export type HeaderActionType = {
+    type: 'LOAD_CURRENT_USER_REQUEST'
+    | 'LOAD_CURRENT_USER_SUCCESS'
+    | 'LOAD_CURRENT_USER_FAIL'
+    | 'LOGOUT_REQUEST'
+    | 'LOGOUT_SUCCESS'
+    | 'LOGOUT_FAIL',
+    payload: any
+}
+
 let isUserLoggedIn = false;
 let isUserAdmin = false;
 let user = {};
 
 function getCurrentUser(dispatch: any) {
     try {
-        
+
         dispatch({
             type: LOAD_CURRENT_USER_SUCCESS,
-            payload: {user, isUserLoggedIn, isUserAdmin},
+            payload: { user, isUserLoggedIn, isUserAdmin },
         })
 
     } catch (e) {
@@ -32,7 +42,7 @@ function logoutFrom(dispatch: any) {
 
         dispatch({
             type: LOGOUT_SUCCESS,
-            payload: {user, isUserLoggedIn, isUserAdmin},
+            payload: { user, isUserLoggedIn, isUserAdmin },
         })
 
     } catch (e) {
