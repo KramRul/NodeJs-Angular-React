@@ -12,14 +12,14 @@ class HeaderComponent extends Component {
   renderAdminLinks = () => {
     const props = this.props;
     if(props.isUserLoggedIn && props.isUserAdmin){
-      return     <li class="nav-item dropdown">
+      return     <li className="nav-item dropdown">
       <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         Admin
       </a>
       <div className="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
-        <a className="dropdown-item" routerLink="shop-admin/add-product-page">Add Product</a>
-        <a className="dropdown-item" routerLink="shop-admin/add-category-page">Add Category</a>
+        <a className="dropdown-item" href="/shop-admin/add-product-page">Add Product</a>
+        <a className="dropdown-item" href="/shop-admin/add-category-page">Add Category</a>
       </div>
     </li>;
     }
@@ -30,7 +30,7 @@ class HeaderComponent extends Component {
     const props = this.props;
     if(!props.isUserLoggedIn){
       return <li className="nav-item">
-      <a className="nav-link" routerLink="account/login">Login</a>
+      <a className="nav-link" href="/account/login">Login</a>
       </li>;
     }
     return;
@@ -40,7 +40,7 @@ class HeaderComponent extends Component {
     const props = this.props;
     if(!props.isUserLoggedIn){
       return <li className="nav-item">
-      <a className="nav-link" onclick="logout()">Logout</a>
+      <a className="nav-link" onClick={(e) => this.logout()}>Logout</a>
       </li>;
     }
     return;
@@ -50,7 +50,7 @@ class HeaderComponent extends Component {
     const props = this.props;
     if(!props.isUserLoggedIn){
       return <li className="nav-item">
-      <a className="nav-link" routerLink="account/register">Register</a>
+      <a className="nav-link" href="account/register">Register</a>
     </li>;
     }
     return;

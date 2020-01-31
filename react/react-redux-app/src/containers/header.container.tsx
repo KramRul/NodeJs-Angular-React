@@ -13,13 +13,13 @@ class HeaderContainer extends React.Component {
   }
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store: any) => {
   return {
     header: store.header
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     loadCurrentUser: () => dispatch(HeaderActions.loadCurrentUser()),
     logout: () => dispatch(HeaderActions.logout()),

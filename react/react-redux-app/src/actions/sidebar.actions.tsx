@@ -9,7 +9,7 @@ export const GO_TO_PRODUCTS_BY_CATEGORY_PAGE_FAIL = 'GO_TO_PRODUCTS_BY_CATEGORY_
 let responseModel = {};
 
 export function loadData() {
-    return dispatch => {
+    return (dispatch: any) => {
         dispatch({
             type: LOAD_DATA_REQUEST,
             payload: null,
@@ -33,7 +33,7 @@ export function loadData() {
 }
 
 export function goToProductsByCategoryPage() {
-    return dispatch => {
+    return (dispatch: any) => {
         dispatch({
             type: GO_TO_PRODUCTS_BY_CATEGORY_PAGE_REQUEST,
             payload: null,

@@ -1,12 +1,12 @@
 import * as SidebarActions from '../actions/sidebar.actions'
 
 const initialState = {
-  responseModel: {}, 
+  responseModel: {},
   isFetching: false,
   error: '',
 }
 
-export function sidebarReducer(state = initialState, action) {
+export function sidebarReducer(state = initialState, action: any) {
   switch (action.type) {
     case SidebarActions.LOAD_DATA_REQUEST:
       return { ...state, isFetching: true, error: '' }

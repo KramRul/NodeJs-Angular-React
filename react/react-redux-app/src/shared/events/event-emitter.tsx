@@ -1,17 +1,20 @@
-const EventEmitter = {
-    events: {}, // dictionary with our events
-    subscribe(event, listener) { // add event listeners
-      if (!this.events[event]) { this.events[event] = { listeners: [] } }
-      this.events[event].listeners.push(listener);
-    },
-    off(event) { // remove listeners
-      delete this.events[event]
-    },
-    emit(name, ...payload) { // trigger events
-      for (const listener of this.events[name].listeners) {
-        listener.apply(this, payload)
-      }
+export class EventEmitter {
+  private events: { [id: string]: { listeners: Array<Function> } } = {};
+
+  subscribe(event: string, listener: Function) {
+    if (!this.events[event]) {
+      this.events[event] = { listeners: [] }
     }
+    this.events[event].listeners.push(listener);
   };
 
-  export default EventEmitter;
+  off(event: string) {
+    delete this.events[event];
+  };
+
+  emit(name: string, ...payload: any[]) {
+    for (const listener of this.events[name].listeners) {
+      listener.apply(this, payload)
+    }
+  }
+};

@@ -11,7 +11,7 @@ class App extends Component {
         <HeaderContainer />
         <table>
           <tr>
-            <td class="menu-sidebar">
+            <td className="menu-sidebar">
               <SidebarContainer />
             </td>
             <td>

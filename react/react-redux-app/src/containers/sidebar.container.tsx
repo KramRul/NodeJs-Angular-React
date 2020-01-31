@@ -9,13 +9,13 @@ class SidebarContainer extends React.Component {
   }
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store: any) => {
   return {
     sidebar: store.sidebar
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     loadData: () => dispatch(SidebarActions.loadData()),
     goToProductsByCategoryPage: () => dispatch(SidebarActions.goToProductsByCategoryPage())

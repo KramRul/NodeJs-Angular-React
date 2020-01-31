@@ -10,7 +10,7 @@ let isUserLoggedIn = false;
 let isUserAdmin = false;
 let user = {};
 
-function getCurrentUser(dispatch) {
+function getCurrentUser(dispatch: any) {
     try {
         
         dispatch({
@@ -27,7 +27,7 @@ function getCurrentUser(dispatch) {
     }
 }
 
-function logoutFrom(dispatch) {
+function logoutFrom(dispatch: any) {
     try {
 
         dispatch({
@@ -45,7 +45,7 @@ function logoutFrom(dispatch) {
 }
 
 export function loadCurrentUser() {
-    return dispatch => {
+    return (dispatch: any) => {
         dispatch({
             type: LOAD_CURRENT_USER_REQUEST,
             payload: null,
@@ -56,7 +56,7 @@ export function loadCurrentUser() {
 }
 
 export function logout() {
-    return dispatch => {
+    return (dispatch: any) => {
         dispatch({
             type: LOGOUT_REQUEST,
             payload: null,

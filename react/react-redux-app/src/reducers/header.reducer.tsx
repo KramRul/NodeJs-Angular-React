@@ -1,14 +1,14 @@
 import * as HeaderActions from '../actions/header.actions'
 
 const initialState = {
-  user: {}, 
-  isUserLoggedIn: false, 
+  user: {},
+  isUserLoggedIn: false,
   isUserAdmin: false,
   isFetching: false,
   error: '',
 }
 
-export function headerReducer(state = initialState, action) {
+export function headerReducer(state = initialState, action: any) {
   switch (action.type) {
     case HeaderActions.LOAD_CURRENT_USER_REQUEST:
       return { ...state, isFetching: true, error: '' }

@@ -17,17 +17,17 @@ class SidebarComponent extends Component {
   </div>
   }
 
-  renderTemplate(categories){
+  renderTemplate(categories:any){
     if(categories && categories.length > 0){
-      let items = categories.map((item) => {
+      let items = categories.map((item: any) => {
         return <div>{this.renderMenuItem(item)}</div>
       });
       return items;
     }
   }
 
-  renderMenuItem(item){
-    return <div> <a href="#menu{{item._id}}" className="list-group-item collapsed" data-toggle="collapse" aria-expanded="false" onClick="goToProductsByCategoryPage(item)">
+  renderMenuItem(item: any){
+    return <div> <a href="#menu{{item._id}}" className="list-group-item collapsed" data-toggle="collapse" aria-expanded="false" onClick={this.goToProductsByCategoryPage(item)}>
     <span className="hidden-sm-down">{item.name}</span>
     </a>
     <div className="collapse" id="menu{{item._id}}">
