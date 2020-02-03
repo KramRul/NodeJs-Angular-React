@@ -1,42 +1,43 @@
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { AddProductToCardShopClientRequestView } from '../entities/shop-client.views/requests/add-product-to-card-shop-client.request.view';
 import { DeleteProductFromCardShopClientRequestView } from '../entities/shop-client.views/requests/delete-product-from-card-shop-client.request.view';
+import HttpHelper from '../helpers/http.helper';
+import Api from '../helpers/api.helper';
 
-@Injectable()
 export class ShopClientService {
-    private url = `${environment.Base_URL}api`;
-
-    constructor(private http: HttpClient) {
+    private url: string;
+    private http: HttpHelper;
+    private api: Api;
+    constructor() {
+        this.http = new HttpHelper();
+        this.api = new Api();
+        this.url = `${this.api.Base_URL}api`;
     }
 
-    getAllProducts(): Observable<any> {
+    getAllProducts(): Promise<any> {
         return this.http.get<any>(`${this.url}/getAllProducts`);
     }
 
-    getProductsByCategory(categoryId: string): Observable<any> {
+    getProductsByCategory(categoryId: string): Promise<any> {
         return this.http.get<any>(`${this.url}/getProductsByCategory?categoryId=${categoryId}`);
     }
 
-    findProducts(searchQuery: string): Observable<any> {
+    findProducts(searchQuery: string): Promise<any> {
         return this.http.get<any>(`${this.url}/findProducts?searchQuery=${searchQuery}`);
     }
 
-    addProductToCard(model: AddProductToCardShopClientRequestView): Observable<any> {
+    addProductToCard(model: AddProductToCardShopClientRequestView): Promise<any> {
         return this.http.post<any>(`${this.url}/addProductToCard`, model);
     }
 
-    getProductsInCard(userId: string): Observable<any> {
+    getProductsInCard(userId: string): Promise<any> {
         return this.http.get<any>(`${this.url}/getProductsInCard?userId=${userId}`);
     }
 
-    deleteProductFromCard(model: DeleteProductFromCardShopClientRequestView): Observable<any> {
+    deleteProductFromCard(model: DeleteProductFromCardShopClientRequestView): Promise<any> {
         return this.http.post<any>(`${this.url}/deleteProductFromCard`, model);
     }
 
-    getAllCategories(): Observable<any> {
+    getAllCategories(): Promise<any> {
         return this.http.get<any>(`${this.url}/getAllCategories`);
     }
 }

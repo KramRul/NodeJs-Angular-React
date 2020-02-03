@@ -16,6 +16,12 @@ export type HeaderContainerProps = {
 }
 
 class HeaderContainer extends React.Component<HeaderContainerProps, HeaderState> {
+  readonly state: HeaderState = {
+    isUserLoggedIn: false,
+    isUserAdmin: false,
+    user: new UserDto()
+  }
+
   componentDidMount() {
     this.props.loadCurrentUser();
   }

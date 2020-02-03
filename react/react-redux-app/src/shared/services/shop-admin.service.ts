@@ -1,27 +1,28 @@
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { EditProductShopAdminRequestView } from '../entities/shop-admin.views/requests/edit-product-shop-admin.request.view';
 import { AddProductShopAdminRequestView } from '../entities/shop-admin.views/requests/add-product-shop-admin.request.view';
 import { AddCategoryShopAdminRequestView } from '../entities/shop-admin.views/requests/add-category-shop-admin.request.view';
+import HttpHelper from '../helpers/http.helper';
+import Api from '../helpers/api.helper';
 
-@Injectable()
 export class ShopAdminService {
-    private url = `${environment.Base_URL}api/admin`;
-
-    constructor(private http: HttpClient) {
+    private url: string;
+    private http: HttpHelper;
+    private api: Api;
+    constructor() {
+        this.http = new HttpHelper();
+        this.api = new Api();
+        this.url = `${this.api.Base_URL}api/admin`;
     }
 
-    editProduct(model: EditProductShopAdminRequestView): Observable<any> {
+    editProduct(model: EditProductShopAdminRequestView): Promise<any> {
         return this.http.post<any>(`${this.url}/editProduct`, model);
     }
 
-    addProduct(model: AddProductShopAdminRequestView): Observable<any> {
+    addProduct(model: AddProductShopAdminRequestView): Promise<any> {
         return this.http.post<any>(`${this.url}/addProduct`, model);
     }
 
-    addCategory(model: AddCategoryShopAdminRequestView): Observable<any> {
+    addCategory(model: AddCategoryShopAdminRequestView): Promise<any> {
         return this.http.post<any>(`${this.url}/addCategory`, model);
     }
 }

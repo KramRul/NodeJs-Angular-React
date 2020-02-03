@@ -9,6 +9,10 @@ export type SidebarState = {
 }
 
 class SidebarContainer extends React.Component<{}, SidebarState> {
+  readonly state: SidebarState = {
+    responseModel: new Array<CategoryDto>()
+  }
+
   render() {
     return <SidebarComponent
       responseModel={this.state.responseModel}
