@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import { HeaderState } from '../../../containers/header.container';
 import { UserDto } from '../../dtos/users/user-dto';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom';
 
 export type HeaderProps = {
   isUserLoggedIn: boolean,
@@ -43,7 +50,8 @@ export default class HeaderComponent extends Component<HeaderProps, HeaderState>
     const props = this.props;
     if(!props.isUserLoggedIn){
       return <li className="nav-item">
-      <a className="nav-link" href="/account/login">Login</a>
+        <Link className="nav-link" to="/account/login">Login</Link>
+        {/* <a className="nav-link" href="/account/login">Login</a> */}
       </li>;
     }
     return;
@@ -51,7 +59,7 @@ export default class HeaderComponent extends Component<HeaderProps, HeaderState>
 
   renderLogoutLink = () => {
     const props = this.props;
-    if(!props.isUserLoggedIn){
+    if(props.isUserLoggedIn){
       return <li className="nav-item">
       <a className="nav-link" onClick={(e) => this.logout()}>Logout</a>
       </li>;

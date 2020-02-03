@@ -13,10 +13,14 @@ class SidebarContainer extends React.Component<{}, SidebarState> {
     responseModel: new Array<CategoryDto>()
   }
 
+  goToProductsByCategoryPage(){
+    SidebarActions.goToProductsByCategoryPage();
+  }
+
   render() {
     return <SidebarComponent
       responseModel={this.state.responseModel}
-      goToProductsByCategoryPage={SidebarActions.goToProductsByCategoryPage} />
+      goToProductsByCategoryPage={this.goToProductsByCategoryPage} />
   }
 }
 

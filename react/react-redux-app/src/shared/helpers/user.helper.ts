@@ -3,10 +3,8 @@ import { LocalStorageKeyTypeDto } from '../dtos/enums/local-storage-key-type-dto
 import { UserDto } from '../dtos/users/user-dto';
 
 export class UserHelper {
-    constructor(
-        private localStorageService: LocalStorageService,
-        private localStorageKeyTypeDto: LocalStorageKeyTypeDto
-    ) { }
+    private localStorageService: LocalStorageService = new LocalStorageService();
+    private localStorageKeyTypeDto: LocalStorageKeyTypeDto = new LocalStorageKeyTypeDto();
 
     setCurrentUser(user: UserDto) {
         this.localStorageService.set(this.localStorageKeyTypeDto.userKey, user);

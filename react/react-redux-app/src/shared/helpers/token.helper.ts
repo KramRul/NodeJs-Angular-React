@@ -5,11 +5,9 @@ import { LocalStorageKeyTypeDto } from "../dtos/enums/local-storage-key-type-dto
 export class TokenHelper {
     private tokenOutputEmit: EventEmitter = new EventEmitter();
     private token: string = '';
-
-    constructor(
-        private localStorageService: LocalStorageService,
-        private localStorageKeyTypeDto: LocalStorageKeyTypeDto
-    ) { }
+    
+    private localStorageService: LocalStorageService = new LocalStorageService();
+    private localStorageKeyTypeDto: LocalStorageKeyTypeDto = new LocalStorageKeyTypeDto();
 
     public isExist(): boolean {
         this.token = this.getTokenFromLocalStorage();

@@ -22,6 +22,10 @@ class HeaderContainer extends React.Component<HeaderContainerProps, HeaderState>
     user: new UserDto()
   }
 
+  logout(){
+    HeaderActions.logout();
+  }
+
   componentDidMount() {
     this.props.loadCurrentUser();
   }
@@ -31,7 +35,7 @@ class HeaderContainer extends React.Component<HeaderContainerProps, HeaderState>
       isUserLoggedIn={this.state.isUserLoggedIn}
       isUserAdmin={this.state.isUserAdmin}
       user={this.state.user}
-      logout={HeaderActions.logout} />
+      logout={this.logout} />
   }
 }
 
